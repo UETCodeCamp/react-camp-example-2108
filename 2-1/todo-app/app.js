@@ -35,10 +35,18 @@ function addTodoToLocalStorage(text) {
  * Complete/incomplete to-do
  * @param index
  */
+function toggleTodo(index) {
 
-///////
-//////
-//////
+}
+
+/**
+ * Handle remove to-do
+ *
+ * @param target
+ */
+function handleToggleTodo(target) {
+
+}
 
 
 /**
@@ -48,7 +56,6 @@ function addTodoToLocalStorage(text) {
  */
 function handleRemoveTodo(target) {
     var todo = target.parentElement;
-
     var id = todo.id;
 
     removeTodoFromStorage(id);
@@ -66,7 +73,7 @@ function onClickTodo(event) {
     var tag = target.tagName;
 
     if (tag === 'LI') {
-        //Complete/Incomplete to-do
+        handleToggleTodo(target);
     }
 
     if (tag === 'SPAN') {
@@ -74,9 +81,10 @@ function onClickTodo(event) {
     }
 }
 
-function renderTodoToHTML(text, completed) {
+function renderTodoToHTML(text, completed, i) {
     var todo = document.createElement('li');
     todo.innerHTML = text + '<span class="close">×</span>';
+    todo.id = i;
 
     if (completed) {
         todo.className = "completed";
@@ -116,7 +124,7 @@ function renderTodosList() {
     for (var i = 0; i < todos.length; i++) {
         var todo = todos[i];
 
-        renderTodoToHTML(todo.text, todo.completed);
+        renderTodoToHTML(todo.text, todo.completed, i);
     }
 }
 
