@@ -45,7 +45,13 @@ function toggleTodo(index) {
  * @param target
  */
 function handleToggleTodo(target) {
+    var todos = getTodosFromStorage();
 
+    var id = target.id;
+    var todo = todos[id];
+    todo.completed = !todo.completed;
+
+    saveTodosToStorage(todos);
 }
 
 
@@ -59,7 +65,6 @@ function handleRemoveTodo(target) {
     var id = todo.id;
 
     removeTodoFromStorage(id);
-    render();
 }
 
 /**
@@ -79,6 +84,8 @@ function onClickTodo(event) {
     if (tag === 'SPAN') {
         handleRemoveTodo(target);
     }
+
+    render();
 }
 
 function renderTodoToHTML(text, completed, i) {
